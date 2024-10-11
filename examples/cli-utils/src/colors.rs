@@ -15,6 +15,11 @@ pub fn red(s: &str) -> String {
     format!("\x1b[31m{}\x1b[0m", s)
 }
 
+/// Returns a string with the ANSI escape code for green.
+/// # Examples:
+/// ```
+/// use cli_utils::colors::green;
+/// println!("{}", green("Green"));
 pub fn green(s: &str) -> String {
     format!("\x1b[32m{}\x1b[0m", s)
 }
@@ -31,7 +36,13 @@ pub fn reset(s: &str) -> String {
     format!("\x1b[0m{}\x1b[0m", s)
 }
 
-pub enum Color{
+/// An enum representing different colors.
+/// # Examples:
+/// ```
+/// use cli_utils::colors::Color;
+/// let color = Color::Red;
+/// ```
+pub enum Color {
     Red,
     Green,
     Blue,
@@ -41,7 +52,7 @@ pub enum Color{
 pub struct ColorString {
     pub color: Color,
     pub string: String,
-    pub colorized: String
+    pub colorized: String,
 }
 
 impl ColorString {
@@ -58,5 +69,4 @@ impl ColorString {
     pub fn reset(&mut self) {
         self.colorized = reset(&self.string);
     }
-
 }

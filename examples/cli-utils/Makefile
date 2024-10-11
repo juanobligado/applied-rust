@@ -17,6 +17,8 @@ lint: ## Lint the project using cargo
 fmt: ## Format the project using cargo
 	@rustup component add rustfmt 2> /dev/null
 	cargo fmt
+test: ## Runs tests
+	cargo test
 
 bump: ## Bump the version number
 	@echo "Current version is $(shell cargo pkgid | cut -d# -f2)"
@@ -24,3 +26,8 @@ bump: ## Bump the version number
 	updated_version=$$(cargo pkgid | cut -d# -f2 | sed -E "s/([0-9]+\.[0-9]+\.[0-9]+)$$/$$version/"); \
 	sed -i -E "s/^version = .*/version = \"$$updated_version\"/" Cargo.toml
 	@echo "New version is $(shell cargo pkgid | cut -d# -f2)"%
+
+doc: ## Generates Documentation for the project
+	cargo doc --no-deps --open
+
+
